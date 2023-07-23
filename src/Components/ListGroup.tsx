@@ -4,10 +4,12 @@ import {useState} from "react";
 interface Props {
     items: string[];
     heading: string;
+    onSelectedItem: (item : string) => void;
+
 }
 
 
-function ListGroup({items, heading} : Props) { // our component have state that will change over time
+function ListGroup({items, heading, onSelectedItem} : Props) { // our component have state that will change over time
     const [selectedIndex, setSelectedIndex] = useState(-1);
     // -1 beacuse array index starts from 0
     // arg: variable we want to change, function where we change it
@@ -31,7 +33,8 @@ function ListGroup({items, heading} : Props) { // our component have state that 
                         key={item}
                         onClick={
                             () => {
-                                setSelectedIndex(index)
+                                setSelectedIndex(index);
+                                onSelectedItem(item);
                             }
                     }>
                         {item} </li>
