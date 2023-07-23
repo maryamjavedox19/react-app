@@ -1,4 +1,4 @@
-// list group
+// ----------------list group-------------------
 
 // import ListGroup from "./Components/ListGroup";
 
@@ -24,13 +24,47 @@
 //     );
 // }
 
-import Alert from "./Components/alert";
+// -----------Alert---------------------------
+// import Alert from "./Components/Alert";
+
+// function App() {
+//     return (
+//         <div>
+//             <Alert>
+//                 Hello
+//                 <span>World</span>
+//                 {/* this is complex structure thats why we using reactnode in app for this */} </Alert>
+//         </div>
+//     );
+// }
+
+
+// BUTTON - ALERTING
+import {useState} from "react";
+import Button from "./Components/Button";
+import Alert from "./Components/Alert";
+
+interface Props {
+    children: string
+}
 
 function App() {
+    const [alertVisible, setAlertVisibility] = useState(false);
+
     return (
-        <div>
-            <Alert/>
+        <div> {
+            alertVisible && <Alert onClose={
+                () => setAlertVisibility(false)
+            }>My alert</Alert>
+        }
+            {/*<Button color="secondary" onClick={() => console.log('Clicked')}>My Button</Button>*/}
+            <Button color="primary"
+                onClick={
+                    () => setAlertVisibility(true)
+            }>My Button</Button>
         </div>
-    );
+    )
 }
+
+
 export default App;
