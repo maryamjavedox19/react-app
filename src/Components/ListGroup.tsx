@@ -1,14 +1,13 @@
 import {useState} from "react";
-function ListGroup() {
-    let items = [
-        "New York",
-        "sans francisco",
-        "Tokyo",
-        "London",
-        "Paris"
-    ];
 
-    // our component have state that will change over time
+// using interface we can define shape of object
+interface Props {
+    items: string[];
+    heading: string;
+}
+
+
+function ListGroup({items, heading} : Props) { // our component have state that will change over time
     const [selectedIndex, setSelectedIndex] = useState(-1);
     // -1 beacuse array index starts from 0
     // arg: variable we want to change, function where we change it
@@ -16,7 +15,7 @@ function ListGroup() {
 
     return (
         <>
-            <h1>List</h1>
+            <h1>{heading}</h1>
             {/*works as if else*/}
             {
             items.length === 0 && <p>No item found</p>
