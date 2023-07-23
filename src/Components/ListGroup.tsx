@@ -1,5 +1,4 @@
-import {MouseEvent} from "react"; // to let it know what type of event we're using
-
+import {useState} from "react";
 function ListGroup() {
     let items = [
         "New York",
@@ -9,10 +8,11 @@ function ListGroup() {
         "Paris"
     ];
 
-    // event handler
-    const handleClick = (event : MouseEvent) => {
-        console.log(event)
-    }
+    // our component have state that will change over time
+    const [selectedIndex, setSelectedIndex] = useState(-1);
+    // -1 beacuse array index starts from 0
+    // arg: variable we want to change, function where we change it
+
 
     return (
         <>
@@ -26,10 +26,16 @@ function ListGroup() {
             <ul className="list-group">
                 {
                 items.map((item, index) => (
-                    <li className="list-group-item"
+                    <li className={
+                            selectedIndex === index ? "list-group-item active" : "list-group-item"
+                        }
                         key={item}
-                        onClick={handleClick}>
-                        {item}</li>
+                        onClick={
+                            () => {
+                                setSelectedIndex(index)
+                            }
+                    }>
+                        {item} </li>
                 ))
             }
                 {" "} </ul>
